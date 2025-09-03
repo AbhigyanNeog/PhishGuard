@@ -1,1 +1,40 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PhishGuard - Phishing Detector</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input { width: 400px; padding: 8px; }
+        button { padding: 8px 16px; margin-left: 10px; }
+        .result { margin-top: 20px; font-size: 20px; font-weight: bold; }
+        .safe { color: green; }
+        .phish { color: red; }
+        .reasons { margin-top: 15px; text-align: left; display: inline-block; }
+    </style>
+</head>
+<body>
+    <h1>🛡️ PhishGuard</h1>
+    <p>Enter a website URL to check if it is safe or phishing.</p>
+    <form method="POST">
+        <input type="text" name="url" placeholder="https://example.com" required>
+        <button type="submit">Check</button>
+    </form>
+    {% if prediction %}
+        <div class="result {% if 'SAFE' in prediction %}safe{% else %}phish{% endif %}">
+            {{ prediction }} → {{ url }}
+        </div>
+
+        {% if explanation %}
+        <div class="reasons">
+            <h3>Why?</h3>
+            <ul>
+                {% for reason in explanation %}
+                    <li>{{ reason }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    {% endif %}
+</body>
+</html>
