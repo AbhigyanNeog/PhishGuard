@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "PhishGuard",
+  "version": "1.0",
+  "description": "Detects phishing websites in real time",
+  "permissions": ["webNavigation", "tabs"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": true
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_title": "PhishGuard"
+  }
+}
